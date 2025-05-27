@@ -13,7 +13,7 @@ Extension that downloads the sprites from pokemondb of your favorites.
 * add option to download any sprite in options
 * add option to choose download location, by default it downloads to extension_folder/favorites/sprites/
 * add option to choose type of sprite: shiny, backs, etc.
-* add error handleing for when not connected to the internet and this extension tries to download a sprite. Currently when attempting to curl the resource and if no resource, it still downloads the responce output as the .png image when its not the correct resource. (harmless and doesnt break anything, just will provide a false positive giving a success on downloading the image)
+* add error handleing for when not connected to the internet and this extension tries to download a sprite. Currently when attempting to curl the resource and if no resource, it still downloads the response output as the .png image when its not the correct resource. (harmless and doesnt break anything, just will provide a false positive giving a success on downloading the image)
 * add more generations
 
 ### Proof of concept:
