@@ -2,8 +2,10 @@
 
 Extension that downloads the sprites from pokemondb of your favorites.
 
-### Notes:
+### Requirements:
+Ironmon-Tracker v.9.0.0 or higher
 
+### Notes:
 * You must have an internet connection for this to work!
 * Currently only works for gen 3 roms: ruby-sapphire-emerald-firered-leafgreen
 * This can be usefull for automating stream setup displays of your favorites.
