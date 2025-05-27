@@ -19,9 +19,8 @@ Extension that downloads the sprites from pokemondb of your favorites.
 ### Proof of concept:
 
 On load of extention and tracker:
-
-![](assets\20250527_140949_favorites_sprites_downloaded.png)
+![favorites_sprites_downloaded](https://github.com/user-attachments/assets/7e4abec9-618d-4e96-af31-c8e581522214)
 
 If sprite download in download directory exists already, it will skip it.
+![favorites_sprites__existed](https://github.com/user-attachments/assets/62f644f3-7868-4f6a-86dd-2b65de59fcae)
 
-![](assets\20250527_141019_favorites_sprites__existed.png)
