@@ -14,7 +14,64 @@ local function FavoritesGetSprite()
 	local FAVORITES = Main.MetaSettings.tracker.Startup_favorites
 	local CHECKED_FAVORITES = false
 
+	local DownloadOptionsScreen={}
+	local previousScreen = nil
+	DownloadOptionsList={
+		{
+			text="Download location:",
+			options= {SAVED_SPRITE_PATH,"custom"},
+			default = SAVED_SPRITE_PATH
+		}
+	}
+	DownloadOptionsScreen.Colors = {
+		text = "Default text",
+		highlight = "Intermediate text",
+		border = "Upper box border",
+		fill = "Upper box background",
+	}
+	DownloadOptionsScreen.Buttons = {
+		--[[ DownloadLocation = {
+			type = Constants.ButtonTypes.NO_BORDER,
+			getText = function(this) return string.format("%s: %s",DownloadOptionsList.text,DownloadOptionsList.options) end
+		}, ]]
+		Back = Drawing.createUIElementBackButton(function()
+			Program.changeScreenView(previousScreen or SingleExtensionScreen)
+			previousScreen = nil
+		end, DownloadOptionsScreen.Colors.text),
+	}
+	function DownloadOptionsScreen.refreshButtons()
+		for _, button in pairs(DownloadOptionsScreen.Buttons or {}) do
+			if type(button.updateSelf) == "function" then
+				button:updateSelf()
+			end
+		end
+	end
+	function DownloadOptionsScreen.checkInput(xmouse, ymouse)
+		Input.checkButtonsClicked(xmouse, ymouse, DownloadOptionsScreen.Buttons or {})
+	end
+	function DownloadOptionsScreen.drawScreen()
+		local canvas ={
+			x = Constants.SCREEN.WIDTH + Constants.SCREEN.MARGIN,
+			y = Constants.SCREEN.MARGIN,
+			w = Constants.SCREEN.RIGHT_GAP - (Constants.SCREEN.MARGIN * 2),
+			h = Constants.SCREEN.HEIGHT - (Constants.SCREEN.MARGIN * 2),
+			text = Theme.COLORS[DownloadOptionsScreen.Colors.text],
+			border = Theme.COLORS[DownloadOptionsScreen.Colors.border],
+			fill = Theme.COLORS[DownloadOptionsScreen.Colors.fill],
+			shadow = Utils.calcShadowColor(Theme.COLORS[DownloadOptionsScreen.Colors.fill]),
+		}
+		Drawing.drawBackgroundAndMargins()
+		gui.defaultTextBackground(canvas.fill)
+
+		gui.drawRectangle(canvas.x, canvas.y, canvas.w, canvas.h, canvas.border, canvas.fill)
+		
+		for _, button in pairs(DownloadOptionsScreen.Buttons or {}) do
+			Drawing.drawButton(button, canvas.shadow)
+		end
+	end
 	function self.configureOptions()
+		previousScreen = SingleExtensionScreen
+		Program.changeScreenView(DownloadOptionsScreen)
 		--[[ WIP
 		show current save directory of sprites
 		add option to run checkFavorites on current favorites in case something didnt work
